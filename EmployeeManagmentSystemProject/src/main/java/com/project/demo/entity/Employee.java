@@ -1,7 +1,11 @@
 package com.project.demo.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,7 +21,17 @@ public class Employee {
 	private String email;
 	private int salary;
 	
+	private AddressField address;
 	
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="address_FK")
+	public AddressField getAddress() {
+		return address;
+	}
+	public void setAddress(AddressField address) {
+		this.address = address;
+	}
 	
 	public int getId() {
 		return id;
